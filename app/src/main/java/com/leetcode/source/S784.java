@@ -9,7 +9,7 @@ public class S784 {
         ret.add(S);
         for(int i=0; i<S.length(); i++) {
             char t = S.charAt(i);
-            if(t<9 && t<0) {
+            if(t<='9' && t>='0') {
                 continue;
             }
             char st;
@@ -22,13 +22,9 @@ public class S784 {
             ret1.addAll(ret);
             for(String s: ret1) {
                 StringBuilder sb = new StringBuilder();
-                if(i-1 > 0) {
-                    sb.append(S.substring(0, i - 1));
-                }
+                sb.append(s.substring(0, i));
                 sb.append(st);
-                if(i+1<S.length()-1) {
-                    sb.append(S.substring(i+1));
-                }
+                sb.append(s.substring(i+1));
                 ret.add(sb.toString());
             }
         }
@@ -36,7 +32,7 @@ public class S784 {
     }
 
     public static void main(String[] args) {
-        String test = "a1b2";
+        String test = "a1b234Eg6P";
         List<String> res = letterCasePermutation(test);
         for(String s:res) {
             System.out.print(" " + s);
