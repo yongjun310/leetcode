@@ -1,4 +1,4 @@
-package com.leetcode.source;
+package com.leetcode.source.s700;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
