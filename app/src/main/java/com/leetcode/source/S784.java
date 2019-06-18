@@ -1,11 +1,11 @@
 package com.leetcode.source;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class S784 {
     public static List<String> letterCasePermutation(String S) {
-        List<String> ret = new ArrayList<>();
+        List<String> ret = new CopyOnWriteArrayList<>();
         ret.add(S);
         for(int i=0; i<S.length(); i++) {
             char t = S.charAt(i);
@@ -18,9 +18,7 @@ public class S784 {
             } else {
                 st = (char)(t-32);
             }
-            List<String> ret1 = new ArrayList<>();
-            ret1.addAll(ret);
-            for(String s: ret1) {
+            for(String s: ret) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(s.substring(0, i));
                 sb.append(st);
