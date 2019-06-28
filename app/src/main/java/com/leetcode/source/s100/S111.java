@@ -53,7 +53,7 @@ public class S111 {
         TreeNode d = new TreeNode(4);
         TreeNode e = new TreeNode(5);
         a.left = b;
-        a.right = c;
+//        a.right = c;
         b.left = d;
         b.right = e;
 

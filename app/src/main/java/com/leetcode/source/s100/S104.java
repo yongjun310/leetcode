@@ -15,32 +15,31 @@ public class S104 {
             return 0;
         }
         Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> subStack = new Stack<>();
         stack.push(root);
         TreeNode tmp;
         int maxDepth = 0;
-        int curDepth = 1;
         while(true) {
-            tmp = stack.get(stack.size()-1);
-            if(tmp == null) {
+            if(stack.size() == 0) {
                 break;
             }
-            if(tmp.left != null && tmp.left != root) {
-                stack.push(tmp.left);
-                tmp.left = root;
-                curDepth++;
-            } else if(tmp.right != null && tmp.right != root) {
-                stack.push(tmp.right);
-                tmp.right = root;
-                curDepth++;
-            } else {
-                if(curDepth > maxDepth && tmp.left != root && tmp.right != root) {
-                    maxDepth = curDepth;
+            tmp = stack.pop();
+            maxDepth++;
+            while(true) {
+                if(tmp.left != null) {
+                    subStack.push(tmp.left);
                 }
-                curDepth--;
-                stack.pop();
-                if(stack.size() == 0) {
+                if(tmp.right != null) {
+                    subStack.push(tmp.right);
+                }
+                if(stack.size() > 0) {
+                    tmp = stack.pop();
+                } else {
                     break;
                 }
+            }
+            while(subStack.size()>0) {
+                stack.push(subStack.pop());
             }
         }
         return maxDepth;
