@@ -1,11 +1,11 @@
-package com.leetcode.source.s600;
+package com.leetcode.source.s700;
 
 public class S746 {
-    public static minCostClimbingStairs(int[] cost) {
+    public static int minCostClimbingStairs(int[] cost) {
         return costCompute(cost, 0);
     }
 
-    public int costCompute(int[] cost, int start) {
+    public static int costCompute(int[] cost, int start) {
         if(start == cost.length-1) {
             return 0;
         }
@@ -22,7 +22,7 @@ public class S746 {
 
     public static void main(String[] args) {
         int[] test = {-1, -2, -3, -4, 60};
-        int b = maximumProduct(test);
+        int b = minCostClimbingStairs(test);
         System.out.print(" " + b);
     }
 }
