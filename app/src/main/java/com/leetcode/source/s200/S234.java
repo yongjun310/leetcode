@@ -5,7 +5,7 @@ public class S234 {
       int val;
       ListNode next;
       ListNode(int x) { val = x; }
-  }
+    }
     public static boolean isPalindrome(ListNode head) {
         ListNode tmp = head;
         int count = 0;
