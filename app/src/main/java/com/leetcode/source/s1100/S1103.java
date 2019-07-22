@@ -1,4 +1,4 @@
-package com.leetcode.source.s1000;
+package com.leetcode.source.s1100;
 
 /**
  * We distribute some number of candies, to a row of n = num_people people in the following way:
