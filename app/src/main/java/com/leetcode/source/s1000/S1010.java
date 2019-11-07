@@ -1,12 +1,10 @@
 package com.leetcode.source.s1000;
 
-import java.util.Arrays;
-import java.util.Collection;
+import android.annotation.SuppressLint;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 /*In a list of songs, the i-th song has a duration of time[i] seconds.
 
@@ -31,41 +29,51 @@ Note:
 
 1 <= time.length <= 60000
 1 <= time[i] <= 500*/
-public class S1010 {
-    public static int numPairsDivisibleBy60(int[] time) {
-        int ret = 0;
-        Map<Integer,Integer> map = new HashMap<>();
-        for(int i=0;i<time.length;i++) {
-            int a = time[i]%60;
-            Integer v = map.get(a);
-            map.put(a, v!=null? v+ 1:1);
-        }
-        Set<Integer> keysets = map.keySet();
-        Iterator<Integer> it = keysets.iterator();
-        while(it.hasNext()) {
-            Integer k = it.next();
-            int v = map.get(k);
-            if(k == 30 || k == 0) {
-                ret += v*(v-1)/2;
-                continue;
-            }
-            Integer pv = map.get(60-k);
-            if(pv == null) {
-                continue;
-            }
-            if(pv>0) {
-                ret += v*pv;
-            }
-            it.remove();
-        }
-        return ret;
+public final class S1010 {
+  private S1010() {
+  }
+
+  private static int numPairsDivisibleBy60(int[] time) {
+    int ret = 0;
+    @SuppressLint("UseSparseArrays") Map<Integer, Integer> map = new HashMap<>();
+    for (int aTime : time) {
+      int a = aTime % 60;
+      Integer v = map.get(a);
+      map.put(a, v != null ? v + 1 : 1);
     }
-
-    public static void main(String[] args) {
-        int[] a = {60,60,60};
-
-        int b = numPairsDivisibleBy60(a);
-
-        System.out.print(" " + b);
+    Set<Integer> keysets = map.keySet();
+    Iterator<Integer> it = keysets.iterator();
+    while (it.hasNext()) {
+      Integer k = it.next();
+      if (k == null) {
+        continue;
+      }
+      Integer vI = map.get(k);
+      if (vI == null) {
+        continue;
+      }
+      int v = vI;
+      if (k == 30 || k == 0) {
+        ret += v * (v - 1) / 2;
+        continue;
+      }
+      Integer pv = map.get(60 - k);
+      if (pv == null) {
+        continue;
+      }
+      if (pv > 0) {
+        ret += v * pv;
+      }
+      it.remove();
     }
+    return ret;
+  }
+
+  public static void main(String[] args) {
+    int[] a = {60, 60, 60};
+
+    int b = numPairsDivisibleBy60(a);
+
+    System.out.print(" " + b);
+  }
 }
