@@ -32,10 +32,11 @@ The maximum number of employees won't exceed 2000.
  */
 
 class S690 {
-    class Employee {
-        var id:Int = 0
-        var importance:Int = 0
-        var subordinates:List<Int> = listOf()
+    class Employee  constructor(
+            var id: Int = 0,
+            var importance: Int = 0,
+            var subordinates: List<Int> = listOf()
+    ) {
     }
 
     fun getImportance(employees: List<Employee?>, id: Int): Int {
@@ -63,5 +64,17 @@ class S690 {
             }
         }
         return sum
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            //[[1, 5, [2, 3]], [2, 3, []], [3, 3, []]], 1
+            var a = Employee(1, 5, listOf(2, 3))
+            var b = Employee(2, 3)
+            var c = Employee(3, 3)
+            var employees  = listOf<Employee>(a, b, c)
+            println(S690().getImportance(employees, 1))
+        }
     }
 }
