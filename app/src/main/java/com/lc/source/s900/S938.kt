@@ -72,7 +72,6 @@ class S938 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            S938().reorderLogFiles(arrayOf("8 fj dzz k", "5r 446 6 3", "63 gu psub", "5 ba iedrz", "6s 87979 5", "3r 587 01", "jc 3480612", "bb wsrd kp", "b aq cojj", "r5 6316 71"))
         }
     }
 
