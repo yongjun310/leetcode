@@ -83,7 +83,6 @@ class S997 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S997().findJudge(2, arrayOf(arrayOf(1, 2))))
         }
     }
 
