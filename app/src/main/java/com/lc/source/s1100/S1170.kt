@@ -1,3 +1,5 @@
+import com.lc.source.s1100.S1160
+
 /*
 1170. Compare Strings by Frequency of the Smallest Character
 Easy
@@ -38,31 +40,50 @@ Accepted
 Submissions
 77,644
 */
-fun frequency(str: String) {
-        var sc = ''
+class S1170{
+    fun frequency(str: String): Int {
+        var sc = 'z' + 1
         var c = 0
-        for(i in 0..str.length()-1) {
-            if(sc<str[i]) {
+        for(i in str.indices) {
+            if(sc>str[i]) {
                 sc = str[i]
             }
         }
-        for(i in 0..str.length()-1) {
-            if(sc==str[i]) {
+        for(element in str) {
+            if(sc== element) {
                 c++
             }
         }
         return c
     }
-    
+
     fun numSmallerByFrequency(queries: Array<String>, words: Array<String>): IntArray {
-        var fword = Array(words.size(), {0})
-        for(i in 0..words.size()-1) {
+        var fword = Array(words.size, {0})
+        for(i in words.indices) {
             fword[i] = frequency(words[i])
         }
         fword.sort()
-        var qword = Array(queries.size(), {0})
-        for(i in 0..queries.size()-1) {
+        var qword = IntArray(queries.size, {0})
+        for(i in queries.indices) {
+            var c = words.size
             var fq = frequency(queries[i])
-            
+            for(j in words.indices) {
+                if(fq>=fword[j]) {
+                    c--
+                }
+            }
+            qword[i] = c
+        }
+        return qword
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            for(element in S1170().numSmallerByFrequency(arrayOf("bba","abaaaaaa","aaaaaa","bbabbabaab","aba","aa","baab","bbbbbb","aab","bbabbaabb"),
+                    arrayOf("aaabbb","aab","babbab","babbbb","b","bbbbbbbbab","a","bbbbbbbbbb","baaabbaab","aa"))) {
+                println(element)
+            }
         }
     }
+}
