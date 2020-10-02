@@ -4,64 +4,54 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 /*
-1295. Find Numbers with Even Number of Digits
+1299. Replace Elements with Greatest Element on Right Side
 Easy
 
-448
+486
 
-62
+108
 
 Add to List
 
 Share
-Given an array nums of integers, return how many of them contain an even number of digits.
+Given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
+
+After doing so, return the array.
+
 
 
 Example 1:
 
-Input: nums = [12,345,2,6,7896]
-Output: 2
-Explanation:
-12 contains 2 digits (even number of digits).
-345 contains 3 digits (odd number of digits).
-2 contains 1 digit (odd number of digits).
-6 contains 1 digit (odd number of digits).
-7896 contains 4 digits (even number of digits).
-Therefore only 12 and 7896 contain an even number of digits.
-Example 2:
-
-Input: nums = [555,901,482,1771]
-Output: 1
-Explanation:
-Only 1771 contains an even number of digits.
+Input: arr = [17,18,5,4,6,1]
+Output: [18,6,6,6,1,-1]
 
 
 Constraints:
 
-1 <= nums.length <= 500
-1 <= nums[i] <= 10^5
+1 <= arr.length <= 10^4
+1 <= arr[i] <= 10^5
 Accepted
-171,397
+78,209
 Submissions
-212,607
+104,481
 */
 class S1295{
-    fun findNumbers(nums: IntArray): Int {
-        var c = 0
-        for(i in nums.indices) {
-            when {
-                nums[i] in 10..99  -> c++
-                nums[i] in 1000..9999  -> c++
-                nums[i] in 100000..999999  -> c++
+    fun replaceElements(arr: IntArray): IntArray {
+        for(i in arr.size-2 downTo 0) {
+            if(arr[i] < arr[i+1]) {
+                arr[i] = arr[i+1]
             }
         }
-        return c
+        for(i in 0..arr.size-2) {
+            arr[i] = arr[i+1]
+        }
+        arr[arr.size-1] = -1
+        return arr
     }
 
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S1295().findNumbers(intArrayOf(100000)))
         }
     }
 }
