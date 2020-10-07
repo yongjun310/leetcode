@@ -82,7 +82,6 @@ class S1385{
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S1385().luckyNumbers(arrayOf(intArrayOf(3,7,8),intArrayOf(9,11,13),intArrayOf(15,16,17))))
         }
     }
 }
