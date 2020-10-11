@@ -64,6 +64,7 @@ class S1592 {
         var c = 0
         var last = ' '
         var cw = 0
+        var sb = StringBuilder()
         for(i in text.indices) {
             if(last == ' ' && text[i] != ' ') {
                 cw++
@@ -73,6 +74,13 @@ class S1592 {
                 c++
             }
         }
+        if(cw == 1) {
+            sb.append(text.trim())
+            for(i in 0 until c) {
+                sb.append(' ')
+            }
+            return sb.toString()
+        }
         var es = c/(cw-1)
         var ssb = StringBuilder()
         for(i in 0 until es) {
@@ -80,7 +88,6 @@ class S1592 {
         }
         var spstr = ssb.toString()
         var os = c%(cw-1)
-        var sb = StringBuilder()
         last = ' '
         var curw = 1
         for(i in text.indices) {
@@ -102,7 +109,7 @@ class S1592 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S1592().reorderSpaces("  walks  udp package   into  bar a"))
+            print(S1592().reorderSpaces("  hello"))
         }
     }
 
