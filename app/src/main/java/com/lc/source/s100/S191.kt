@@ -70,7 +70,6 @@ class S191 {
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S191().reverseBits(5))
         }
     }
 }
