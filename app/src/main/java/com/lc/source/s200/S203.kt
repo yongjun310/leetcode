@@ -56,7 +56,6 @@ class S203 {
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S203().rob(intArrayOf(1,5,3,8,7,2,5)))
         }
     }
 }
