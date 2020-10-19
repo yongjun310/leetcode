@@ -66,6 +66,10 @@ class S278 {
         return start
     }
 
+    private fun isBadVersion(mid: Int): Boolean {
+        return true
+    }
+
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
