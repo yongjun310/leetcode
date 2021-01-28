@@ -43,10 +43,14 @@ Submissions
 
 class S43{
     fun multiply(num1: String, num2: String): String {
+        if (num1 == "0" || num2 == "0") {
+            return "0"
+        }
         var mc = StringBuilder()
         var sb = StringBuilder()
         for (i in num1.length-1 downTo 0) {
-            mc = add(mc, multiplyChar(num1[i], num2).append(sb).toString())
+            var mul =  multiplyChar(num1[i], num2).append(sb).toString()
+            mc = add(mc,mul)
             sb.append("0")
         }
         return mc.toString()
@@ -58,7 +62,7 @@ class S43{
         var l2 = m2.length
         var plus = 0
         var sum = 0
-        var l = min(l1, l2)
+        var l = Math.min(l1, l2)
         for (i in 1..l) {
             sum = m1[l1-i].toInt() - 48 + m2[l2-i].toInt() - 48 + plus
             sb.append(sum%10)
@@ -77,6 +81,9 @@ class S43{
                 plus = sum/10
             }
         }
+        if (plus>0) {
+            sb.append(plus)
+        }
         return sb.reverse()
     }
 
@@ -89,6 +96,9 @@ class S43{
             sb.append(sum%10)
             plus = sum/10
         }
+        if (plus>0) {
+            sb.append(plus)
+        }
         sb.reverse()
         return sb
     }
@@ -96,7 +106,7 @@ class S43{
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S43().multiply("232", "332"))
+            print(S43().multiply("234134123", "43253456"))
         }
     }
 }
