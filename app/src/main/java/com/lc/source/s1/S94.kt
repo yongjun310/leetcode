@@ -91,7 +91,6 @@ class S94{
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            print(S94().restoreIpAddresses("010010"))
         }
     }
 }
