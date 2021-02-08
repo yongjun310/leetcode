@@ -45,24 +45,23 @@ class S96{
     }
 
     fun numTrees(n: Int): Int {
-        var retl = findTree(1, n)
-        return retl
-    }
-
-    fun findTree(s:Int, e:Int):Int {
-        if (s>e) return 1
-        var c = 0
-        for (i in s..e) {
-            var lst = findTree(s, i-1)
-            var rst = findTree(i+1, e)
-            c += lst*rst
+        if (n == 0) return 0
+        if (n == 1) return 1
+        var nums = IntArray(n+1)
+        nums[0] = 1
+        nums[1] = 1
+        for (i in 2..n) {
+            for (j in 0 until i) {
+                nums[i] += nums[j]*nums[i-1-j]
+            }
         }
-        return c
+        return nums[n]
     }
 
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
+            print(S96().numTrees(3))
         }
     }
 }
