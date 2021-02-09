@@ -56,6 +56,7 @@ class S103{
             return list
         }
         queue.push(root)
+        var left = false
         while (true) {
             var cl = ArrayList<Int>()
             var curNode : TreeNode?
@@ -63,11 +64,12 @@ class S103{
             if (q.isEmpty()) {
                 break
             }
+            left = !left
             var nq = if (q == queue) lqueue else queue
             while (q.isNotEmpty()) {
                 curNode = q.pop()
                 curNode?.`val`?.let { cl.add(it) }
-                if (nq != lqueue) {
+                if (left) {
                     if (curNode.left != null) {
                         nq.push(curNode.left)
                     }
@@ -81,10 +83,6 @@ class S103{
                     if (curNode.left != null) {
                         nq.push(curNode.left)
                     }
-                }
-                var q = if (queue.isEmpty()) lqueue else queue
-                if (q.isEmpty()) {
-                    break
                 }
             }
             if (cl.isEmpty()) {
