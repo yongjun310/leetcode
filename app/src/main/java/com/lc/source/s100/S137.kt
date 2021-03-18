@@ -46,11 +46,16 @@ Submissions
 
 class S137 {
     fun singleNumber(nums: IntArray): Int {
-        var r = nums[0]
-        for (i in 1 until nums.size) {
-            r = r xor nums[i]
+        var length = nums.size
+        var result = 0
+        for(i in 0 until 32){
+            var temp = 0
+            for(j in 0 until length){
+                temp+=(nums[j] shr i).and(1)
+            }
+            result = result.or ((temp%3) shl i)
         }
-        return -r.inv()
+        return result
     }
 
     companion object{
