@@ -1,6 +1,8 @@
 package com.lc.source.s100
 
+import java.lang.StringBuilder
 import java.util.*
+import kotlin.collections.HashSet
 
 /*
 139. Word Break
@@ -50,40 +52,30 @@ Submissions
  */
 
 class S139 {
-    class Node(var `val`: Node?) {
-        var next: Node? = null
-        var random: Node? = null
-    }
-
-    var ret = false
-
     fun wordBreak(s: String, wordDict: List<String>): Boolean {
-        helper(s, 0, wordDict)
-        return ret
-    }
-
-    fun helper(s: String, i: Int, wordDict: List<String>) {
-        if (ret) {
-            return
-        }
-        var c = false
+        var set = HashSet<String>()
         for (e in wordDict) {
-            if (s.startsWith(e, i)) {
-                if (s.length - i == e.length) {
-                    ret = true
-                } else {
-                    helper(s, i + e.length, wordDict)
+            set.add(e)
+        }
+        var flagArr = BooleanArray(s.length+1)
+        flagArr[0] = true
+        for (i in 1..s.length) {
+            for (j in 0 until i) {
+                var cur = s.substring(j, i)
+                if (flagArr[j] && set.contains(cur)) {
+                    flagArr[i] = true
                 }
-                c = true
             }
         }
+        return flagArr[s.length]
     }
+
 
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            var s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-            var arr = listOf("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa")
+            var s = "leetcode"
+            var arr = listOf("leet","code")
             print(S139().wordBreak(s, arr))
         }
     }
