@@ -61,8 +61,8 @@ class S148 {
             end = cur
             cur = cur.next
         }
-        helper(head, end)
-        return head
+        var arr = helper(head, end)
+        return arr[0]
     }
 
     fun helper(head: ListNode?, end: ListNode?): Array<ListNode?> {
@@ -77,10 +77,11 @@ class S148 {
         var highCur = highhead
         var tag = head
         var cur = head?.next
-        while (cur != null) {
+        while (cur != null ) {
             if (cur.`val` >= tag.`val`) {
                 if (highhead == null) {
                     highhead = cur
+                    highCur = cur
                 } else {
                     highCur?.next = cur
                     highCur = cur
@@ -88,30 +89,43 @@ class S148 {
             } else {
                 if (lowhead == null) {
                     lowhead = cur
+                    lowCur = cur
                 } else {
                     lowCur?.next = cur
                     lowCur = cur
                 }
             }
+            if(cur == end) {
+                break
+            }
             cur = cur.next
         }
         lowend = lowCur
         highend = highCur
-        if (lowend != null) {
+        if (lowend != null && lowhead != lowend) {
             var headArr = helper(lowhead, lowend)
             lowhead = headArr[0]
             headArr[1]?.next = tag
         } else {
-            lowhead = tag
+            if (lowhead == null) {
+                lowhead = tag
+            } else {
+                lowend?.next = tag
+            }
         }
-        if (highhead != null) {
+        if (highhead != null && highhead != highend) {
             var headArr = helper(highhead, highend)
             tag.next = headArr[0]
             highend = headArr[1]
         } else {
-            highend = tag
+            if (highhead == null) {
+                highend = tag
+                tag.next = null
+            } else {
+                tag.next = highhead
+                highend?.next = null
+            }
         }
-        tag.next =
         return arrayOf(lowhead, highend)
     }
 
@@ -119,16 +133,12 @@ class S148 {
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            var v4 = ListNode(4)
-            var v2 = ListNode(2)
-            var v1 = ListNode(1)
             var v3 = ListNode(3)
-            var v6 = ListNode(5)
-            v4.next = v2
-            v2.next = v1
-            v1.next = v3
-            v3.next = v6
-            S148().sortList(v4)
+            var v4 = ListNode(4)
+            var v1 = ListNode(1)
+            v3.next = v4
+            v4.next = v1
+            S148().sortList(v3)
         }
     }
 }
