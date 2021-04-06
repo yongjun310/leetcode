@@ -52,26 +52,27 @@ class S179 {
         override fun compare(o1: Int?, o2: Int?): Int {
             var ostr1 = o1.toString()
             var ostr2 = o2.toString()
-            var count = 0
-            while (count<ostr1.length && count<ostr2.length) {
-                if (ostr1[count] != ostr2[count]) {
-                    return ostr1[count] - ostr2[count]
-                }
-                count++
-            }
-            return ostr2.length - ostr1.length
+            var ls = (ostr2+ostr1).toLong() - (ostr1+ostr2).toLong()
+            return if(ls>0) 1 else if (ls.equals(0)) 0 else -1
         }
 
     }
     fun largestNumber(nums: IntArray): String {
         var retSB = StringBuilder()
-        nums.sortedWith(MyComparator())
-        for (i in nums.indices) {
-            if (i<nums.size-1) {
-                var v1len = nums[i]
-                if (nums[i] )
-            }
+        var snums = nums.sortedWith(MyComparator())
+        for (i in snums.indices) {
+            retSB.append(snums[i])
         }
+        if (retSB[0] == '0') {
+            return "0"
+        }
+        return retSB.toString()
     }
 
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            print(S179().largestNumber(intArrayOf(301, 30, 34, 5, 9, 3, 2)))
+        }
+    }
 }
